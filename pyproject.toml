@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "churn-prediction"
+version = "0.1.0"
+description = ""
+authors = ["“Gutto <“guttolaudie@gmail.com”>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[tool.poetry.group.dev.dependencies]
+isort = "^5.13.2"
+black = "^24.3.0"
+ignr = "^2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
