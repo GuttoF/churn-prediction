@@ -13,6 +13,8 @@ scikit-learn = "^1.4.2"
 catboost = "^1.2.3"
 duckdb = "^0.10.1"
 tabulate = "^0.9.0"
+ipython = "^8.23.0"
+jupysql = "^0.10.10"
 
 
 [tool.poetry.group.dev.dependencies]
