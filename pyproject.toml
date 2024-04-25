@@ -1,20 +1,15 @@
 [tool.poetry]
 name = "churn-prediction"
-version = "0.2.0"
+version = "0.3.0"
 description = ""
 authors = ["“Gutto <“guttolaudie@gmail.com”>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-seaborn = "^0.13.2"
-scipy = "^1.13.0"
-scikit-learn = "^1.4.2"
-catboost = "^1.2.3"
-duckdb = "^0.10.1"
-tabulate = "^0.9.0"
 ipython = "^8.23.0"
-jupysql = "^0.10.10"
+polars = "^0.20.22"
+duckdb = "^0.10.2"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -23,6 +18,7 @@ black = "^24.3.0"
 ignr = "^2.2"
 python-dotenv = "^1.0.1"
 ipykernel = "^6.29.4"
+ruff = "^0.3.7"
 
 [build-system]
 requires = ["poetry-core"]
