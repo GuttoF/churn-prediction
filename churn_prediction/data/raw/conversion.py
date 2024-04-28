@@ -26,7 +26,7 @@ def snake_case(column_name: str) -> str:
 env_path = os.path.join(os.path.dirname(__file__), "..", "..", ".env")
 load_dotenv(dotenv_path=env_path)
 
-path = os.getenv("HOME_PATH")
+path = os.getenv("HOMEPATH")
 full_path = os.path.join(path, "data/raw/churn.csv")
 new_path = os.path.join(path, "data/interim/churn.db")
 
