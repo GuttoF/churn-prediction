@@ -27,6 +27,7 @@ ignr = "^2.2"
 python-dotenv = "^1.0.1"
 ipykernel = "^6.29.4"
 ruff = "^0.3.7"
+notebook = "^7.1.3"
 
 [build-system]
 requires = ["poetry-core"]

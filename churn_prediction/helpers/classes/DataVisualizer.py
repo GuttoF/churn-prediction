@@ -4,7 +4,6 @@ import plotly.express as px
 import plotly.graph_objects as go
 import scipy.stats as ss
 from plotly.subplots import make_subplots
-from scipy.stats import chi2_contingency
 
 
 class DataVisualizer:
@@ -263,7 +262,7 @@ class DataVisualizer:
         Prints the chi-square statistic, p-value, and the result of the hypothesis test.
         """
         table = pd.crosstab(self.data[featureA], self.data[featureB])
-        result = chi2_contingency(table)
+        result = ss.chi2_contingency(table)
         print(
             f"Chi2 Statistic: {round(result.statistic, 3)}\nP-value: {round(result.pvalue, 3)}"
         )
