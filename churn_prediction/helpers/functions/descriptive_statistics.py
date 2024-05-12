@@ -4,9 +4,10 @@ import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
+colors_list = ["#DE9776", "#9192B3", "#3D8221", "#823F21", "#BFC2FF", "#97D77D"]
 
 def multiple_boxplots(
-    data: Union[float, int, str], columns: list, colors: list = None
+    data: Union[float, int, str], columns: list, colors: list = colors_list
 ) -> None:
     """
     Create multiple boxplots in subplots.
@@ -30,9 +31,6 @@ def multiple_boxplots(
             cols += 1
 
     fig = make_subplots(rows=rows, cols=cols, subplot_titles=columns)
-
-    if colors is None:
-        colors = ["blue"] * num_columns
 
     row, col = 1, 1
 

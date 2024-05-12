@@ -18,7 +18,10 @@ ipykernel = "^6.29.4"
 nbformat = "^5.10.4"
 setuptools = "^69.5.1"
 ydata-profiling = "^4.7.0"
-xgboost = "^2.0.3"
+fastapi = "^0.111.0"
+pydantic = "^2.7.1"
+yellowbrick = "^1.5"
+boruta = "^0.3"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -30,6 +33,8 @@ ipykernel = "^6.29.4"
 ruff = "^0.3.7"
 notebook = "^7.1.3"
 h2o = "^3.46.0.1"
+lightgbm = "^4.3.0"
+xgboost = "^2.0.3"
 
 [build-system]
 requires = ["poetry-core"]

@@ -50,6 +50,7 @@ class DataVisualizer:
         row, col = 1, 1
 
         for i, column in enumerate(columns):
+            color_index = i % len(self.colors_list)
             column_data = self.data[column]
             fig.add_trace(
                 go.Histogram(
@@ -57,7 +58,7 @@ class DataVisualizer:
                     name=column + " Histogram",
                     nbinsx=30,
                     opacity=0.75,
-                    marker_color=self.colors_list[i],
+                    marker_color=self.colors_list[color_index],
                     histnorm="probability density",
                 ),
                 row=row,
@@ -74,7 +75,7 @@ class DataVisualizer:
                     y=kde_y,
                     mode="lines",
                     name=column + " KDE",
-                    line=dict(color=self.colors_list[i], width=2),
+                    line=dict(color=self.colors_list[color_index], width=2),
                 ),
                 row=row,
                 col=col,
@@ -87,6 +88,78 @@ class DataVisualizer:
 
         fig.update_layout(
             title_text="Distribution Plots", height=200 * rows, showlegend=False
+        )
+        fig.show()
+
+    def distribution_analysis(self, columns: list) -> None:
+        """
+        Create multiple distribution plots (distplots) and boxplots for the given columns.
+
+        Args:
+        - columns (list): A list of column names to be plotted.
+        """
+        cols = 2  # two columns per row, one for distplot and one for boxplot
+        rows = len(columns)
+
+        fig = make_subplots(
+            rows=rows,
+            cols=cols,
+            subplot_titles=[f"{col}" for col in columns for _ in (0, 1)],
+        )
+
+        row = 1
+
+        for i, column in enumerate(columns):
+            color_index = i % len(self.colors_list)
+            column_data = self.data[column]
+
+            # Distribution Plot
+            fig.add_trace(
+                go.Histogram(
+                    x=column_data,
+                    name="Histogram",
+                    nbinsx=30,
+                    opacity=0.75,
+                    marker_color=self.colors_list[color_index],
+                    histnorm="probability density",
+                ),
+                row=row,
+                col=1,
+            )
+
+            kde = ss.gaussian_kde(column_data)
+            kde_x = np.linspace(column_data.min(), column_data.max(), 500)
+            kde_y = kde(kde_x)
+
+            fig.add_trace(
+                go.Scatter(
+                    x=kde_x,
+                    y=kde_y,
+                    mode="lines",
+                    name=f"{column} KDE",
+                    line=dict(color=self.colors_list[color_index], width=2),
+                ),
+                row=row,
+                col=1,
+            )
+
+            # Boxplot
+            fig.add_trace(
+                go.Box(
+                    x=column_data,
+                    name="",
+                    marker_color=self.colors_list[color_index],
+                ),
+                row=row,
+                col=2,
+            )
+
+            row += 1
+
+        fig.update_layout(
+            title_text="Distribution and Boxplot Analysis",
+            height=250 * rows,
+            showlegend=False,
         )
         fig.show()
 
