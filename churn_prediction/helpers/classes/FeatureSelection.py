@@ -58,9 +58,19 @@ class FeatureSelection(BaseEstimator, TransformerMixin):
                 if isinstance(transformer, OneHotEncoder):
                     feature_names.extend(transformer.get_feature_names_out(column))
                 else:
-                    feature_names.extend(transformer.get_feature_names_out())
+                    transformed_names = transformer.get_feature_names_out()
+                    if name == "log":
+                        transformed_names = [
+                            "log_" + feature for feature in column
+                        ]  # Prepend "log_" for log transformed features
+                    feature_names.extend(transformed_names)
             else:
-                feature_names.extend(column)
+                if name == "log":
+                    feature_names.extend(
+                        ["log_" + feature for feature in column]
+                    )  # Ensure log features are correctly named
+                else:
+                    feature_names.extend(column)
         return feature_names
 
     def transform(self, X):
