@@ -15,6 +15,39 @@ from sklearn.preprocessing import (
 
 
 class FeatureSelection(BaseEstimator, TransformerMixin):
+    """
+    FeatureSelection class for selecting and transforming features using various transformers and a RandomForest model.
+
+    Parameters:
+    ----------
+    log_list : list
+        List of column names to apply logarithmic transformation.
+    ohe_list : list
+        List of column names to apply one-hot encoding.
+    standard_scaler_list : list
+        List of column names to apply standard scaling.
+    minmax_list : list
+        List of column names to apply min-max scaling.
+    robust_scaler_list : list
+        List of column names to apply robust scaling.
+
+    Attributes:
+    ----------
+    model_rf : RandomForestClassifier
+        Random Forest model used for feature selection.
+    feature_names : list
+        List of feature names after transformation.
+
+    Methods:
+    -------
+    fit(X_train, y_train)
+        Fit the FeatureSelection model on the training data.
+    transform(X)
+        Transform the input data using the fitted transformers.
+    plot_feature_importances()
+        Plot the feature importances based on the fitted RandomForest model.
+    """
+
     def __init__(
         self, log_list, ohe_list, standard_scaler_list, minmax_list, robust_scaler_list
     ):
